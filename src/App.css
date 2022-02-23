@@ -1,0 +1,50 @@
+.div-forms-columns {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  width: 100%;
+}
+
+.div-forms-columns label {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em;
+}
+
+.div-forms-columns label * {
+  margin-top: 0.5em;
+}
+
+.div-forms-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.div-forms-rows label {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5em;
+}
+
+.div-forms-rows label * {
+  width: 200px;
+}
+
+.div-forms-check {
+  margin: 0.5em;
+}
+
+.div-forms-check input {
+  margin-left: 0;
+  margin-right: 0.5em;
+}
+
+button {
+  margin: 0.5em;
+}
+
+.forms {
+  width: 45vw;
+}
