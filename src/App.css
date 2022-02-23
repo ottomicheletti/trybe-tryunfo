@@ -1,3 +1,4 @@
+/* COMEÇO DAS REGRAS DO FORMULÁRIO */
 .div-forms-columns {
   display: flex;
   flex-direction: column;
@@ -48,3 +49,5 @@ button {
 .forms {
   width: 45vw;
 }
+
+/* FIM DAS REGRAS DO FORMULÁRIO */
