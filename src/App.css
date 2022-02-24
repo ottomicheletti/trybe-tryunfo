@@ -1,4 +1,14 @@
-/* COMEÇO DAS REGRAS DO FORMULÁRIO */
+/* BODY */
+.body {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+}
+
+/* COMEÇO DAS REGRAS DO COMPONENTE Form.jsx */
 .div-forms-columns {
   display: flex;
   flex-direction: column;
@@ -11,7 +21,7 @@ label {
 .div-forms-columns label {
   display: flex;
   flex-direction: column;
-  margin: 0.5em;
+  margin: 0.5em 0;
 }
 
 .div-forms-columns label * {
@@ -26,15 +36,11 @@ label {
 .div-forms-rows label {
   display: flex;
   justify-content: space-between;
-  margin: 0.5em;
+  margin: 0.5em 0;
 }
 
 .div-forms-rows label * {
   width: 200px;
-}
-
-.div-forms-check {
-  margin: 0.5em;
 }
 
 .div-forms-check input {
@@ -43,11 +49,137 @@ label {
 }
 
 button {
-  margin: 0.5em;
+  margin: 0.5em auto;
 }
 
-.forms {
-  width: 45vw;
+.form-container {
+  background-color: #fafafa;
+  padding: 0.5em;
+  width: 46vw;
 }
 
-/* FIM DAS REGRAS DO FORMULÁRIO */
+.form-container h2 {
+  color: #444955;
+}
+
+/* FIM DAS REGRAS DO COMPONENTE Form.jsx */
+
+/* COMEÇO DAS REGRAS DO COMPONENTE Card.jsx */
+.card-container {
+  background-color: #023031;
+  height: 620px;
+  padding: 0.5em;
+  width: 46vw;
+}
+
+.card-container h2 {
+  color: white;
+}
+
+.card {
+  background-color: white;
+  border: 8px white solid;
+  border-radius: 10px;
+  height: 462px;
+  margin: auto;
+  width: 286px;
+}
+
+.cor-normal {
+  background-color: #036b52;
+  border: 6px #036b52 solid;
+  border-radius: 10px;
+  height: 420px;
+  margin: 8px auto;
+  padding: 10px;
+  position: relative;
+  top: -3px;
+}
+
+.cor-raro {
+  background-color: #036b52;
+  border: 6px #0198b3 solid;
+  border-radius: 10px;
+  height: 420px;
+  margin: 8px auto;
+  padding: 10px;
+  position: relative;
+  top: -3px;
+}
+
+.cor-muito-raro {
+  background-color: #036b52;
+  border: 6px #730396 solid;
+  border-radius: 10px;
+  height: 420px;
+  margin: 8px auto;
+  padding: 10px;
+  position: relative;
+  top: -3px;
+}
+
+.card-name {
+  background-color: #023031;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: white;
+  height: 40px;
+  padding-right: 0.5em;
+  position: relative;
+  text-align: end;
+  top: -20px;
+}
+
+.card-img {
+  height: 176px;
+  position: relative;
+  top: -20px;
+  width: 254px;
+}
+
+.card-text {
+  background-color: #036b52;
+  color: white;
+  font-size: small;
+  font-weight: 400;
+  height: 52px;
+  left: -6px;
+  overflow-wrap: break-word;
+  padding: 6px;
+  position: relative;
+  top: -70px;
+  transform: rotate(-8deg);
+  width: 254px;
+  z-index: 1;
+}
+
+.attributes {
+  background-color: white;
+  border-radius: 10px;
+  height: 170px;
+  padding-top: 50px;
+  position: relative;
+  top: -130px;
+  z-index: 0;
+}
+
+.attribute {
+  background-color: #f0f2f5;
+  border-radius: 5px;
+  margin: 18px;
+  padding: 5px;
+  text-align: justify;
+}
+
+.trunfo-true {
+  color: yellow;
+  font-size: large;
+  font-weight: 900;
+  left: 25px;
+  position: relative;
+  top: -446px;
+}
+
+.hide {
+  display: none;
+}

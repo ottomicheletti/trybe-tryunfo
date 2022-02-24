@@ -18,88 +18,90 @@ class Form extends Component {
       onSaveButtonClick,
     } = this.props;
     return (
-      <div className="forms">
+      <div className="form-container">
+        <h2 className="div-title">Adicionar nova carta</h2>
         <div className="div-forms-columns">
-          <label htmlFor="name">
-            Nome
+          <label htmlFor="cardName">
+            Nome da Carta
             <input
-              name="name"
+              name="cardName"
               id=""
               type="text"
               data-testid="name-input"
-              value={ cardName }
               onChange={ onInputChange }
+              value={ cardName }
             />
           </label>
-          <label htmlFor="description">
+          <label htmlFor="cardDescription">
             Descrição
             <textarea
-              name="description"
+              name="cardDescription"
               id=""
               cols="30"
-              rows="10"
+              rows="5"
+              maxLength="150"
               data-testid="description-input"
-              value={ cardDescription }
               onChange={ onInputChange }
+              value={ cardDescription }
             />
           </label>
         </div>
         <div className="div-forms-rows">
-          <label htmlFor="attr01">
+          <label htmlFor="cardAttr1">
             Attr01
             <input
               type="number"
-              name="attr01"
+              name="cardAttr1"
               id=""
               data-testid="attr1-input"
-              value={ cardAttr1 }
               onChange={ onInputChange }
+              value={ cardAttr1 }
             />
           </label>
-          <label htmlFor="attr02">
+          <label htmlFor="cardAttr2">
             Attr02
             <input
               type="number"
-              name="attr02"
+              name="cardAttr2"
               id=""
               data-testid="attr2-input"
-              value={ cardAttr2 }
               onChange={ onInputChange }
+              value={ cardAttr2 }
             />
           </label>
-          <label htmlFor="attr03">
+          <label htmlFor="cardAttr3">
             Attr03
             <input
               type="number"
-              name="attr03"
+              name="cardAttr3"
               id=""
               data-testid="attr3-input"
-              value={ cardAttr3 }
               onChange={ onInputChange }
+              value={ cardAttr3 }
             />
           </label>
-          <label htmlFor="image">
+          <label htmlFor="cardImage">
             Imagem
             <input
               type="text"
-              name="image"
+              name="cardImage"
               id=""
               data-testid="image-input"
-              value={ cardImage }
               onChange={ onInputChange }
+              value={ cardImage }
             />
           </label>
         </div>
         <div className="div-forms-columns">
-          <label htmlFor="rarity">
+          <label htmlFor="cardRare">
             Raridade
             <select
-              name="rarity"
+              name="cardRare"
               id="rarity"
               placeholder="Escolha um nível de raridade"
               data-testid="rare-input"
-              value={ cardRare }
               onChange={ onInputChange }
+              value={ cardRare }
             >
               <option value="normal">normal</option>
               <option value="raro">raro</option>
@@ -108,14 +110,14 @@ class Form extends Component {
           </label>
         </div>
         <div className="div-forms-check">
-          <label htmlFor="trunfo">
+          <label htmlFor="cardTrunfo">
             <input
               type="checkbox"
-              name="trunfo"
+              name="cardTrunfo"
               id="checkbox"
               data-testid="trunfo-input"
-              checked={ cardTrunfo }
               onChange={ onInputChange }
+              checked={ cardTrunfo }
             />
             Super Trybe Trunfo
           </label>
