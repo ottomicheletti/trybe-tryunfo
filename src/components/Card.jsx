@@ -49,17 +49,18 @@ class Card extends Component {
           {cardTrunfo ? <p className={ tnf } data-testid="trunfo-card">{ sp }</p> : null}
         </div>
         <div className="delete-button">
-          {displayedCard ? (
-            <button
-              type="button"
-              data-testid="delete-button"
-              onClick={ () => deleteCard(cardName) }
-            >
-              Excluir
-            </button>
-          ) : (
-            null
-          )}
+          {displayedCard
+            ? (
+              <button
+                type="button"
+                data-testid="delete-button"
+                onClick={ () => deleteCard(cardName) }
+              >
+                Excluir
+              </button>
+            ) : (
+              null
+            )}
         </div>
       </div>
     );

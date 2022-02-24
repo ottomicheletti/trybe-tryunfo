@@ -225,6 +225,7 @@ button {
 .cards-display {
   display: flex;
   flex-flow: wrap;
+  height: max-content;
   justify-content: center;
   width: calc(100vw - 200px);
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Card from './components/Card';
 import Form from './components/Form';
-import Search from './components/Search';
 
 class App extends Component {
   constructor(props) {
@@ -19,12 +18,15 @@ class App extends Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       displayedCard: false,
+      searchTrunfo: false,
+      rareSearch: '',
+      searchInput: '',
       cards: [],
     };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
-    this.getFormValidated = this.getFormValidated.bind(this);
+    this.validateTrunfo = this.validateTrunfo.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
   }
 
@@ -33,11 +35,11 @@ class App extends Component {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
-    if (target.checked) {
-      this.setState({
-        hasTrunfo: true,
-      });
-    }
+    // if (target.checked) {
+    //   this.setState({
+    //     hasTrunfo: true,
+    //   });
+    // }
 
     this.setState({
       [name]: value,
@@ -45,30 +47,22 @@ class App extends Component {
   }
 
   onSaveButtonClick() {
-    const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-    } = this.state;
+    const { state } = this;
 
     const newCard = {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
+      cardName: state.cardName,
+      cardDescription: state.cardDescription,
+      cardAttr1: state.cardAttr1,
+      cardAttr2: state.cardAttr2,
+      cardAttr3: state.cardAttr3,
+      cardImage: state.cardImage,
+      cardRare: state.cardRare,
+      cardTrunfo: state.cardTrunfo,
       displayedCard: true,
     };
 
-    this.setState((prevState) => ({
+    this.setState((prevState) => ({ cards: [...prevState.cards, newCard] }));
+    this.setState({
       cardName: '',
       cardDescription: '',
       cardAttr1: 0,
@@ -79,8 +73,7 @@ class App extends Component {
       cardTrunfo: false,
       isSaveButtonDisabled: true,
       displayedCard: false,
-      cards: [...prevState.cards, newCard],
-    }));
+    }, () => this.validateTrunfo());
   }
 
   getFormValidated() {
@@ -117,13 +110,23 @@ class App extends Component {
     }
   }
 
+  validateTrunfo() {
+    const { cards } = this.state;
+    const query = cards.some((card) => card.cardTrunfo === true);
+    if (query) {
+      this.setState({ hasTrunfo: true });
+    } else {
+      this.setState({ hasTrunfo: false });
+    }
+  }
+
   deleteCard(name) {
     const { cards } = this.state;
     const newCardsArray = cards.filter((card) => card.cardName !== name);
 
     this.setState({
       cards: newCardsArray,
-    });
+    }, this.validateTrunfo());
 
     const displayedCardsHaveTrunfo = newCardsArray.some((card) => card.cardTrunfo);
     if (displayedCardsHaveTrunfo) {
@@ -138,7 +141,14 @@ class App extends Component {
   }
 
   render() {
-    const { cards } = this.state;
+    const {
+      cards,
+      // cardName,
+      // cardRare,
+      searchInput,
+      rareSearch,
+      searchTrunfo,
+    } = this.state;
     return (
       <div>
         <h1 className="title">Tryunfo</h1>
@@ -155,15 +165,70 @@ class App extends Component {
           </div>
         </div>
         <div className="cards-div">
-          <Search />
-          <div className="cards-display">
-            {cards.map((card) => (
-              <Card
-                key={ card.cardName }
-                deleteCard={ this.deleteCard }
-                { ... card }
+          <div className="search-bar">
+            <h2>Filtros de Busca</h2>
+            <input
+              type="text"
+              name="searchInput"
+              placeholder="Nome da carta"
+              data-testid="name-filter"
+              disabled={ searchTrunfo }
+              onChange={ this.onInputChange }
+              value={ searchInput }
+            />
+            <select
+              name="rareSearch"
+              data-testid="rare-filter"
+              disabled={ searchTrunfo }
+              onChange={ this.onInputChange }
+              value={ rareSearch }
+            >
+              <option value="">todas</option>
+              <option value="normal">normal</option>
+              <option value="raro">raro</option>
+              <option value="muito raro">muito raro</option>
+            </select>
+            <label htmlFor="searchTrunfo">
+              <input
+                type="checkbox"
+                name="searchTrunfo"
+                data-testid="trunfo-filter"
+                checked={ searchTrunfo }
+                onChange={ this.onInputChange }
               />
-            ))}
+              Super Trybe Trunfo
+            </label>
+          </div>
+          <div className="cards-display">
+            {searchTrunfo
+              ? cards.filter((card) => card.cardTrunfo === true).map((card) => (
+                <Card
+                  key={ card.cardName }
+                  deleteCard={ this.deleteCard }
+                  { ... card }
+                />))
+              : cards.reduce((acc, card) => {
+                if (rareSearch === '') {
+                  acc = [...acc, card];
+                } if (rareSearch === card.cardRare) {
+                  acc = [...acc, card];
+                }
+                return acc;
+              }, []).filter((card) => card.cardName.includes(searchInput)).map((card) => (
+                <Card
+                  key={ card.cardName }
+                  displayedCard={ card.displayedCard }
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                  deleteCard={ this.deleteCard }
+                />
+              ))}
           </div>
         </div>
       </div>
