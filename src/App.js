@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Card from './components/Card';
 import Form from './components/Form';
+import Search from './components/Search';
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -153,15 +154,17 @@ class App extends React.Component {
             />
           </div>
         </div>
-        <div className="cards-display">
-          {cards.map((card) => (
-            <Card
-              key={ card.cardName }
-              deleteCard={ this.deleteCard }
-              { ... card }
-            />
-
-          ))}
+        <div className="cards-div">
+          <Search />
+          <div className="cards-display">
+            {cards.map((card) => (
+              <Card
+                key={ card.cardName }
+                deleteCard={ this.deleteCard }
+                { ... card }
+              />
+            ))}
+          </div>
         </div>
       </div>
     );
