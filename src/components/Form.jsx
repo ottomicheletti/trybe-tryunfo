@@ -19,7 +19,6 @@ class Form extends Component {
     } = this.props;
     return (
       <div className="form-container">
-        <h2 className="div-title">Adicionar nova carta</h2>
         <div className="div-forms-columns">
           <label htmlFor="cardName">
             Nome da Carta

@@ -113,6 +113,7 @@ class App extends React.Component {
   }
 
   render() {
+    const { cards } = this.state;
     return (
       <div>
         <h1 className="title">Tryunfo</h1>
@@ -122,9 +123,19 @@ class App extends React.Component {
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
           />
-          <Card
-            { ...this.state }
-          />
+          <div className="card-container">
+            <Card
+              { ...this.state }
+            />
+          </div>
+        </div>
+        <div className="cards-display">
+          {cards.map((card) => (
+            <Card
+              key={ card.cardName }
+              { ... card }
+            />
+          ))}
         </div>
       </div>
     );
