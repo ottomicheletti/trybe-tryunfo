@@ -195,3 +195,23 @@ button {
   position: relative;
   width: 94vw;
 }
+
+.delete-button button {
+  background-color: #036b52;
+  border: 3px #023031 solid;
+  border-radius: 5px;
+  color: white;
+  font-size: large;
+  font-weight: 700;
+  height: 30px;
+  left: 123px;
+  position: relative;
+  text-shadow: 2px 2px 2px black;
+  top: -10px;
+  width: 80px;
+}
+
+.delete-button button:hover {
+  background-color: #8f3232;
+  border: 3px #7c0c0c solid;
+}

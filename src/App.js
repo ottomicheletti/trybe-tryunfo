@@ -17,12 +17,14 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      displayedCard: false,
       cards: [],
     };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.getFormValidated = this.getFormValidated.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
   // EVENT HANDLER GENÉRICO
@@ -62,6 +64,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      displayedCard: true,
     };
 
     this.setState((prevState) => ({
@@ -74,6 +77,7 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      displayedCard: false,
       cards: [...prevState.cards, newCard],
     }));
   }
@@ -112,6 +116,26 @@ class App extends React.Component {
     }
   }
 
+  deleteCard(name) {
+    const { cards } = this.state;
+    const newCardsArray = cards.filter((card) => card.cardName !== name);
+
+    this.setState({
+      cards: newCardsArray,
+    });
+
+    const displayedCardsHaveTrunfo = newCardsArray.some((card) => card.cardTrunfo);
+    if (displayedCardsHaveTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    } else {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
+  }
+
   render() {
     const { cards } = this.state;
     return (
@@ -133,8 +157,10 @@ class App extends React.Component {
           {cards.map((card) => (
             <Card
               key={ card.cardName }
+              deleteCard={ this.deleteCard }
               { ... card }
             />
+
           ))}
         </div>
       </div>
