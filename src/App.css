@@ -176,12 +176,25 @@ button {
 }
 
 .trunfo-true {
+  align-items: center;
+  background-color: #7a791b;
+  border: 4px yellow solid;
+  border-radius: 100%;
   color: yellow;
-  font-size: large;
-  font-weight: 900;
-  left: 25px;
+  display: flex;
+  font-size: smaller;
+  font-weight: 700;
+  height: 60px;
+  justify-content: center;
+  left: 8px;
   position: relative;
-  top: -446px;
+  text-align: center;
+  text-shadow: 0 0 5px black;
+  text-transform: uppercase;
+  top: -461px;
+  transform: rotate(-15deg);
+  width: 60px;
+  z-index: 2;
 }
 
 .hide {
